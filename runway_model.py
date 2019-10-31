@@ -13,7 +13,7 @@ import numpy as np
 import common
 
 opt = None
-@runway.setup(options={"config" : file(extension=".json")})
+@runway.setup(options={"upscaled_model": file(extension=".pth"), "config" : file(extension=".json")})
 def setup(opts):
     global opt
     config = opts["config"]
