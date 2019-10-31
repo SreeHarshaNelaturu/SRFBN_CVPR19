@@ -20,6 +20,6 @@
     },
 
     "solver": {
-        "pretrained_path": "./models/SRFBN-S_x4_BI.pth"
+        "pretrained_path": "SRFBN-S_x4_BI.pth"
     }
 }
