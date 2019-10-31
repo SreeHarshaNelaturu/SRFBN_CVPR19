@@ -3,8 +3,8 @@
     "use_cl": true,
     "gpu_ids": [0],
 
-    "scale": 2,
-    "degradation": "BI",
+    "scale": 3,
+    "degradation": "DN",
     "is_train": false,
     "use_chop": true,
     "rgb_range": 255,
@@ -20,6 +20,6 @@
     },
 
     "solver": {
-        "pretrained_path": "SRFBN_x2_BI.pth"
+        "pretrained_path": "./models/SRFBN_x3_DN.pth"
     }
 }

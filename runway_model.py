@@ -13,12 +13,11 @@ import numpy as np
 import common
 
 opt = None
-@runway.setup(options={"upscaling_model" : file(extension=".pth"), "config" : file(extension=".json")})
+@runway.setup(options={"config" : file(extension=".json")})
 def setup(opts):
     global opt
-    model = opts["upscaling_model"]
     config = opts["config"]
-i
+
     opt = option.parse(config)
     opt = option.dict_to_nonedict(opt)
 

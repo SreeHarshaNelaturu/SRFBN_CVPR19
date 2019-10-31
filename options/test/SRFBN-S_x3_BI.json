@@ -10,15 +10,6 @@
     "rgb_range": 255,
     "self_ensemble": false,
 
-    "datasets": {
-        "test_set1": {
-            "mode": "LRHR",
-            "dataroot_HR": "./results/HR/Set5/x3",
-            "dataroot_LR": "./results/LR/LRBI/Set5/x3",
-            "data_type": "img"
-        }
-    },
-
     "networks": {
         "which_model": "SRFBN-S",
         "num_features": 32,
