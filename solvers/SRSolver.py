@@ -14,12 +14,13 @@ from networks import init_weights
 from utils import util
 
 class SRSolver(BaseSolver):
-    def __init__(self, opt):
+    def __init__(self, opt, ckpt):
         super(SRSolver, self).__init__(opt)
         self.train_opt = opt['solver']
         self.LR = self.Tensor()
         self.HR = self.Tensor()
         self.SR = None
+        self.ckpt = ckpt
 
         self.records = {'train_loss': [],
                         'val_loss': [],
@@ -285,7 +286,7 @@ class SRSolver(BaseSolver):
         """
         load or initialize network
         """
-        if (self.is_train and self.opt['solver']['pretrain']) or not self.is_train:
+       """# if (self.is_train and self.opt['solver']['pretrain']) or not self.is_train:
             model_path = self.opt['solver']['pretrained_path']
             if model_path is None: raise ValueError("[Error] The 'pretrained_path' does not declarate in *.json")
 
@@ -302,12 +303,21 @@ class SRSolver(BaseSolver):
                     self.records = checkpoint['records']
 
             else:
-                checkpoint = torch.load(model_path)
+                #checkpoint = torch.load(model_path)
+                checkpoint = torch.load(model)
                 if 'state_dict' in checkpoint.keys(): checkpoint = checkpoint['state_dict']
                 load_func = self.model.load_state_dict if isinstance(self.model, nn.DataParallel) \
                     else self.model.module.load_state_dict
                 load_func(checkpoint)
+        """
+        if (self.is_train and self.opt['solver']['pretrain']) or not self.is_train:
+            model_path = self.opt['solver']['pretrained_path']
 
+            checkpoint = torch.load(ckpt)
+            if 'state_dict' in checkpoint.keys(): checkpoint = checkpoint['state_dict']
+                load_func = self.model.load_state_dict if isinstance(self.model, nn.DataParallel) \
+                    else self.model.module.load_state_dict
+                load_func(checkpoint)
         else:
             self._net_init()
 

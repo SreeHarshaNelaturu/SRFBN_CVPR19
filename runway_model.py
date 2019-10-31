@@ -16,12 +16,13 @@ opt = None
 @runway.setup(options={"upscaled_model": file(extension=".pth"), "config" : file(extension=".json")})
 def setup(opts):
     global opt
+    model = opts["upscaled_model"]
     config = opts["config"]
 
     opt = option.parse(config)
     opt = option.dict_to_nonedict(opt)
 
-    solver = create_solver(opt)
+    solver = create_solver(opt, model)
 
     return solver
 
