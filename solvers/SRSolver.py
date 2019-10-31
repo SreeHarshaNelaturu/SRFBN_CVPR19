@@ -286,7 +286,7 @@ class SRSolver(BaseSolver):
         """
         load or initialize network
         """
-       """# if (self.is_train and self.opt['solver']['pretrain']) or not self.is_train:
+        """# if (self.is_train and self.opt['solver']['pretrain']) or not self.is_train:
             model_path = self.opt['solver']['pretrained_path']
             if model_path is None: raise ValueError("[Error] The 'pretrained_path' does not declarate in *.json")
 
@@ -310,16 +310,11 @@ class SRSolver(BaseSolver):
                     else self.model.module.load_state_dict
                 load_func(checkpoint)
         """
-        if (self.is_train and self.opt['solver']['pretrain']) or not self.is_train:
-            model_path = self.opt['solver']['pretrained_path']
-
-            checkpoint = torch.load(ckpt)
-            if 'state_dict' in checkpoint.keys(): checkpoint = checkpoint['state_dict']
-                load_func = self.model.load_state_dict if isinstance(self.model, nn.DataParallel) \
-                    else self.model.module.load_state_dict
-                load_func(checkpoint)
-        else:
-            self._net_init()
+        checkpoint = torch.load(self.ckpt)
+        if 'state_dict' in checkpoint.keys(): checkpoint = checkpoint['state_dict']
+        load_func = self.model.load_state_dict if isinstance(self.model, nn.DataParallel) \
+            else self.model.module.load_state_dict
+        load_func(checkpoint)
 
 
     def get_current_visual(self, need_np=True, need_HR=True):
