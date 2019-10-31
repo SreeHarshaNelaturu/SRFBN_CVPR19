@@ -31,13 +31,6 @@ def parse(opt_path):
         print('===> Export CUDA_VISIBLE_DEVICES = [' + gpu_list + ']')
     else:
         print('===> CPU mode is set (NOTE: GPU is recommended)')
-
-    # datasets
-    for phase, dataset in opt['datasets'].items():
-        phase = phase.split('_')[0]
-        dataset['phase'] = phase
-        dataset['scale'] = scale
-        dataset['rgb_range'] = rgb_range
         
     # for network initialize
     opt['networks']['scale'] = opt['scale']
