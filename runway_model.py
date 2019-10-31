@@ -71,13 +71,3 @@ def upscale_image(solver, inputs):
 
 if __name__ == "__main__":
     runway.run()
-
-
-
-
-
-
-
-
-
-
