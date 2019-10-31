@@ -80,8 +80,8 @@ class SRSolver(BaseSolver):
         init_weights(self.model, init_type)
 
 
-    def feed_data(self, batch, need_HR=True):
-        input = batch['LR']
+    def feed_data(self, image, need_HR=True):
+        input = image
         self.LR.resize_(input.size()).copy_(input)
 
         if need_HR:
