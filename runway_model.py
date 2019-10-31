@@ -31,8 +31,7 @@ command_outputs = {"output_image" : image}
 
 @runway.command("upscale_image", inputs=command_inputs, outputs=command_outputs, description="Upscales Image as per configuration")
 def upscale_image(solver, inputs):
-    print('===> Start Test')
-    print("==================================================")
+    print('Start Process')
 
     lr = np.array(inputs["input_image"])
     lr_tensor = common.np2Tensor([lr], opt['rgb_range'])[0]
@@ -40,14 +39,12 @@ def upscale_image(solver, inputs):
 
     solver.feed_data(lr_tensor, need_HR=False)
     solver.test()
-    #print("Time to Load: %.4f sec ." % (t1 - t0))
 
     visuals = solver.get_current_visual(need_HR=False)
 
     img = visuals['SR']
     
-    print("==================================================")
-    print("===> Finished !")
+    print("Finished!")
 
     return {"output_image" : img}
 
