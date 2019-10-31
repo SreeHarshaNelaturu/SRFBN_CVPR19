@@ -11,18 +11,6 @@
     "self_ensemble": false,
 
     "datasets": {
-        "test_set1": {
-            "mode": "LRHR",
-            "dataroot_HR": "./results/HR/Set5/x4",
-            "dataroot_LR": "./results/LR/LRBI/Set5/x4",
-            "data_type": "img"
-        },
-//        "test_set2": {
-//             "mode": "LRHR",
-//             "dataroot_HR": "./results/HR/Set14/x4",
-//             "dataroot_LR": "./results/LR/LRBI/Set14/x4",
-//             "data_type": "img"
-//         },
         "test_set3": {
              "mode": "LR",
              "dataroot_LR": "./results/LR/MyImage",
