@@ -13,11 +13,12 @@ import numpy as np
 import common
 
 opt = None
-@runway.setup(options={"upscaled_model": file(extension=".pth"), "config" : file(extension=".json")})
+@runway.setup(options={"scale" : file(is_directory="True")})
 def setup(opts):
     global opt
-    model = opts["upscaled_model"]
-    config = opts["config"]
+    model_scale = opts["scale"]
+    model = model_scale + "/" + "model.pth"     
+    config = model_scale + "/" + "config.json"
 
     opt = option.parse(config)
     opt = option.dict_to_nonedict(opt)
@@ -50,4 +51,4 @@ def upscale_image(solver, inputs):
     return {"output_image" : img}
 
 if __name__ == "__main__":
-    runway.run()
+    runway.run(model_options= {"scale" : "../2x"})
