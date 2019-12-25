@@ -46,9 +46,9 @@ def upscale_image(solver, inputs):
 
     img = visuals['SR']
     
-    print("Finished!")
+    print("Finished Upscaling!")
 
     return {"output_image" : img}
 
 if __name__ == "__main__":
-    runway.run(model_options= {"scale" : "../2x"})
+    runway.run()
